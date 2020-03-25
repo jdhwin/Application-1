@@ -1,1 +1,2 @@
-Initial version of COBOL 10
+Initial version of COBOL 10 and update in GitBash
+
