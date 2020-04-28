@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ZMFRESTAPI" basedir="." default="main">
+
+<!-- comments here -->
+   
+   <property name="src.dir"     value="src" />
+   <property name="build.dir"   value="build" />
+   <property name="classes.dir" value="${build.dir}/classes" />
+   <property name="lib.dir"     value="C:\Users\j.darwin.j.alhambra\jerseyjar\jerseyjars" />
+   <property name="file.name"   value="GETRestAPI" />
+   <property name="pkg.name"    value="darwinwebService" />
+   <property name="main-class"  value="${pkg.name}.${file.name}" />
+   
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar"/>	
+	</path>
+	
+   <target name="clean">
+       <delete dir="${build.dir}"/>
+   </target>
+
+   <target name="compile">
+       <mkdir dir="${classes.dir}"/>
+       <javac srcdir="${src.dir}" destdir="${classes.dir}" includeAntRuntime="No"
+       	      classpathref="classpath" />
+   	<!-- includesfile="${src.dir}/${pkg.name}/${file.name}.java"/> -->
+   </target>
+
+   <target name="triggerBuild">
+	<java fork="true" failonerror="yes" classname="${main-class}">
+   	   <classpath>
+		<path refid="classpath"/>
+   	   	<path location="${classes.dir}"/>
+   	   </classpath>
+     </java> 
+   </target>
+
+   <target name="main" depends="clean,compile,triggerBuild"/>
+   
+</project>
